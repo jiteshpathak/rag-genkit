@@ -1,0 +1,18 @@
+{
+  "name": "rag-genkit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --env-file=.env index.js",
+    "genkit": "genkit start -- npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@genkit-ai/googleai": "^1.12.0",
+    "genkit": "^1.12.0",
+    "nodemon": "^3.1.10"
+  }
+}
