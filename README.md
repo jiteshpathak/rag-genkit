@@ -2,9 +2,16 @@
 
 This project demonstrates a modern Retrieval-Augmented Generation (RAG) pipeline using [Genkit](https://github.com/genkit-dev/genkit), Google AI, LangChain, and Astra DB. It extracts text from web pages, chunks and embeds the content, indexes it in a vector database, and enables advanced question-answering over the ingested data.
 
+## v1.1 UPDATE
+- Added PDF parsing support using pdf-parse
+- Now accepts both web URLs and PDF URLs for content ingestion
+- Improved error handling for document processing
+
 ## Features
 
-- **Extracts readable text from web URLs** using Mozilla's Readability and JSDOM.
+- **Extracts readable text from:**
+  - Web URLs using Mozilla's Readability and JSDOM
+  - PDF documents using pdf-parse
 - **Chunks text** with LangChain's RecursiveCharacterTextSplitter for efficient processing.
 - **Embeds and indexes content** in Astra DB (a vector database) using Genkit's Astra DB plugin and Google AI's text embedding.
 - **Retrieves relevant documents** for user queries and generates answers using Gemini 2.0 Flash.
@@ -16,10 +23,15 @@ This project demonstrates a modern Retrieval-Augmented Generation (RAG) pipeline
 
 ### 1. Extracting Text from Web URLs
 
-The ingestion flow fetches a web page and extracts its main content using:
+The ingestion flow supports two types of sources:
 
-- **JSDOM:** Creates a virtual DOM from the HTML, simulating a browser environment in Node.js.
-- **Mozilla Readability:** Parses the virtual DOM to extract the main article text, filtering out navigation, ads, and other non-essential elements.
+#### Web Pages:
+- **JSDOM:** Creates a virtual DOM from the HTML, simulating a browser environment in Node.js
+- **Mozilla Readability:** Parses the virtual DOM to extract the main article text
+
+#### PDF Documents:
+- **pdf-parse:** Extracts text content from PDF files
+- Handles both local and remote PDF URLs
 
 *Why a virtual DOM?*  
 Readability requires DOM APIs (like `document`), which are only available in browsers. JSDOM provides these APIs in Node.js, enabling Readability to work server-side.
