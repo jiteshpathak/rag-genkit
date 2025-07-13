@@ -1,0 +1,5 @@
+{"id":"549008a55213e6488094750cb6bd72c8","type":"flow","start":1752407085337,"name":"ingest","end":1752407093812.9185,"status":0}
+{"id":"84c8be93e0ba0111ca20d55cb6f50f38","type":"flow","start":1752407125447,"name":"rag","end":1752407127995.0107,"status":0}
+{"id":"172874eab120eb37af68ba12db62d58a","type":"flow","start":1752407182700,"name":"rag","end":1752407184787.9978,"status":0}
+{"id":"353f166338ff6a60bf62f565a9807e5c","type":"flow","start":1752407241752,"name":"rag","end":1752407244035.9868,"status":0}
+{"id":"111b500f7322cf38d54b116ecc8a22d5","type":"flow","start":1752407251201,"name":"rag","end":1752407253459.623,"status":0}

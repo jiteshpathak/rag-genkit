@@ -1,0 +1,6 @@
+{"id":"0a9675b147ad5b2562527e5e549660e2","type":"flow","start":1752352831034,"name":"indexPage","end":1752352834280.743,"status":0}
+{"id":"1f802327391ad4a6b37bc92b3e94cd69","type":"retriever","start":1752352894407,"name":"astradb/rag_app","end":1752352897043.6067,"status":0}
+{"id":"99cb1b5ed37c81b972cb5c70f98d1cb0","type":"flow","start":1752353029160,"name":"indexPage","end":1752353033197.4976,"status":2}
+{"id":"95239c1833a5bb1d00a7ef4c9b2c8d50","type":"flow","start":1752353053592,"name":"indexPage","end":1752353056595.5708,"status":2}
+{"id":"b17fbfaf1cc8280e4d93efc00c2666ba","type":"flow","start":1752353120425,"name":"indexPage","end":1752353124728.089,"status":0}
+{"id":"fb649a7310f3bd2917d10df8e50f2dc4","type":"retriever","start":1752353167656,"name":"astradb/rag_app","end":1752353169164.5298,"status":0}
