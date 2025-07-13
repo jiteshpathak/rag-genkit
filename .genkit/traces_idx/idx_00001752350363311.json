@@ -1,5 +1,0 @@
-{"id":"34e69d41a0296f5e6f39a1f7af77f0c0","type":"util","start":1750098430568,"name":"generate","end":1750098431673.4827,"status":0}
-{"id":"a67f574b5249465fbfb0d89783f1f6dc","type":"util","start":1750098460640,"name":"generate","end":1750098461442.3547,"status":0}
-{"id":"5376cc04ff83184b710cc9bbcb8c848a","type":"util","start":1752340611245,"name":"generate","end":1752340612790.5356,"status":0}
-{"id":"b1d792a3b4146713a194e148664684e7","type":"util","start":1752340624718,"name":"generate","end":1752340625529.147,"status":0}
-{"id":"a09afc5830761b6ae85efef1bf1684ce","type":"embedder","start":1752346989557,"name":"googleai/text-embedding-004","end":1752346990116.657,"status":0}

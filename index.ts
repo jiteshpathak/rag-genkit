@@ -10,6 +10,9 @@ import {
   astraDBRetrieverRef,
   astraDB,
 } from "genkitx-astra-db";
+import pdfParse from 'pdf-parse';
+
+
 
 const collectionName = process.env.ASTRA_DB_COLLECTION_NAME!
 
@@ -32,6 +35,31 @@ const ai = genkit({
 
 export const astraDBIndexer = astraDBIndexerRef({ collectionName });
 export const astraDBRetriever = astraDBRetrieverRef({ collectionName });
+
+
+
+async function extractTextFromPDF(url: string): Promise<string> {
+  try {
+    // 1. Fetch the PDF
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch PDF: ${response.statusText}`);
+    }
+    
+    // 2. Get the PDF as ArrayBuffer
+    const pdfBuffer = await response.arrayBuffer();
+    
+    // 3. Parse the PDF
+    const data = await pdfParse(Buffer.from(pdfBuffer));
+    
+    // 4. Return the extracted text
+    return data.text;
+  } catch (error) {
+    console.error('PDF extraction failed:', error);
+    throw new Error('Failed to extract text from PDF');
+  }
+}
+
 
 async function fetchTextFromWeb(url: string) {
   const html = await fetch(url).then((res) => res.text());
@@ -62,13 +90,19 @@ export const ingest = ai.defineFlow(
     outputSchema: z.void(),
   },
   async (url) => {
-    const text = await ai.run("extractText", async () =>{
-      const response = await fetch(url); // GET Url
-      const html = await response.text(); // Get the HTML content
-      const dom = new JSDOM(html); // Create a Virtual DOM to work with the URL
-      const article = new Readability(dom.window.document).parse(); // Get the article text content Parse the HTML and extract text content using Readability mode of Mozilla Readability
-      return article?.textContent || "";
-    });
+    let text: string;
+    
+    if (url.toLowerCase().endsWith('.pdf')) {
+      text = await extractTextFromPDF(url);
+    } else {
+      text = await ai.run("extractText", async () => {
+        const response = await fetch(url);
+        const html = await response.text();
+        const dom = new JSDOM(html);
+        const article = new Readability(dom.window.document).parse();
+        return article?.textContent || "";
+      });
+    }
 
     const chunks = await ai.run("chunkText", async () => {
       const textSplitter = new RecursiveCharacterTextSplitter({
@@ -81,7 +115,7 @@ export const ingest = ai.defineFlow(
     const documents = chunks.map(chunk => Document.fromText(chunk, { url }));
     await ai.index({
       indexer: astraDBIndexer,
-      documents,
+      documents: chunks.map(chunk => Document.fromText(chunk, { url })),
     });
   }
 );
@@ -105,3 +139,5 @@ export const rag = ai.defineFlow(
     return text;
   }
 );
+
+

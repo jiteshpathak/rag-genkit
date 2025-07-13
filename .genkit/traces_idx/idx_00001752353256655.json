@@ -1,8 +1,0 @@
-{"id":"9719660d7054752a0a7b37da4174d876","type":"flow","start":1752353384682,"name":"rag","end":1752353388719.3523,"status":0}
-{"id":"a9f68dbcd5db829d1f55bcc6228597d0","type":"flow","start":1752353842915,"name":"rag","end":1752353845838.4133,"status":0}
-{"id":"6a6753a8cdac95c13e4259336b917930","type":"flow","start":1752353860964,"name":"rag","end":1752353863653.6216,"status":0}
-{"id":"1cea1442c4df2a16773e755e1537594d","type":"retriever","start":1752353939970,"name":"astradb/rag_app","end":1752353942742.4297,"status":0}
-{"id":"8c29aa4c47084fcbba8f4ee3b685d896","type":"flow","start":1752354071054,"name":"rag","end":1752354075033.137,"status":0}
-{"id":"1e8a77f2dd5993b0f26eae6302b8585b","type":"flow","start":1752354302820,"name":"indexPage","end":1752354305857.2136,"status":2}
-{"id":"4772fd1929902ccafcf7b124256779e0","type":"flow","start":1752354398097,"name":"rag","end":1752354400486.5742,"status":0}
-{"id":"0190e175e5b29449c4cb7241b326a724","type":"embedder","start":1752354466750,"name":"googleai/text-embedding-004","end":1752354466750.148,"status":0}
