@@ -11,6 +11,8 @@ import {
   astraDB,
 } from "genkitx-astra-db";
 import pdfParse from 'pdf-parse';
+import express from 'express';
+import cors from 'cors';
 
 
 
@@ -139,5 +141,54 @@ export const rag = ai.defineFlow(
     return text;
   }
 );
+
+// Add Express server setup
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const PORT = process.env.PORT || 5678;
+
+// Add API endpoints that map to existing functionality
+app.post('/ingest', async (req, res) => {
+  try {
+    const { url } = req.body;
+    if (!url) {
+      return res.status(400).json({ message: 'URL is required' });
+    }
+    await ingest(url);
+    return res.json({ status: 'success', message: 'Document processed successfully' });
+  } catch (error) {
+    console.error('Ingest error:', error);
+    return res.status(500).json({ 
+      message: error instanceof Error ? error.message : 'Failed to process document' 
+    });
+  }
+});
+
+app.post('/rag', async (req, res) => {
+  try {
+    const { query } = req.body;
+    if (!query) {
+      return res.status(400).json({ message: 'Query is required' });
+    }
+    const response = await rag(query);
+    return res.json({ 
+      text: response,
+      sources: [] // Optional: Add source tracking if needed
+    });
+  } catch (error) {
+    console.error('RAG error:', error);
+    return res.status(500).json({ 
+      message: error instanceof Error ? error.message : 'Failed to process query' 
+    });
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
 
 
