@@ -64,11 +64,12 @@ Text embedding is the process of converting text into a vector of numbers that r
    ASTRA_DB_COLLECTION_NAME=your_collection
    ASTRA_DB_APPLICATION_TOKEN=your_token
    ASTRA_DB_API_ENDPOINT=your_endpoint
+   GEMINI_API_KEY="your_gemini_api_key"
    ```
 
 3. **Run the project:**
    ```sh
-   npm run start
+   npm run genkit
    ```
 
 ---
